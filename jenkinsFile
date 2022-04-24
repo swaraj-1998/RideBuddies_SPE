@@ -1,0 +1,39 @@
+pipeline {
+		agent any
+    stages {
+        stage('Git Pull') {
+            steps {
+				git url: 'https://github.com/swaraj-1998/RideBuddies_Devops.git',
+				branch: 'master',
+                credentialsId: 'github'
+            }
+        }
+        stage('Maven Build and Test') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Docker build image') {
+            steps {
+                sh 'docker build -t swaraj1998/ridebuddies:latest .'
+            }
+        }
+        stage('Publish Docker Images') {
+            steps {
+                withDockerRegistry([ credentialsId: "swaraj1998", url: "" ]) {
+                    sh 'docker push swaraj1998/ridebuddies:latest'
+                }
+            }
+        }
+        stage('Clean Docker Images') {
+            steps {
+                sh 'docker rmi -f swaraj1998/ridebuddies'
+            }
+        }
+        stage('Ansible Deploy') {
+             steps {
+                  ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'deploy.yml' ,sudoUser: null
+             }
+        }
+    }
+}
