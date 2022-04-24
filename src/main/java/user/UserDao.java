@@ -7,16 +7,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class UserDao {
-
+	private static final Logger logger = LogManager.getLogger(UserDao.class);
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps = null;
 	
 	@SuppressWarnings("finally")
 	public boolean addUser(UserDto dto) {
+		logger.info("[ADD- USER] - " + dto);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -44,6 +46,7 @@ public class UserDao {
 	@SuppressWarnings("finally")
 	public UserDto authenticate(String phone,String password) {
 		UserDto dto = null;
+		logger.info("[Authenticate] - " + phone);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
@@ -76,6 +79,7 @@ public class UserDao {
 	@SuppressWarnings("finally")
 	public UserDto viewUser(String phone) {
 		UserDto dto = null;
+		logger.info("[VIEW- USER] - " + phone);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
@@ -106,6 +110,7 @@ public class UserDao {
 	@SuppressWarnings("finally")
 	public boolean updateUser(UserDto user) {
 		boolean flag = false;
+		logger.info("[Update- USER] - " + user);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
@@ -132,6 +137,7 @@ public class UserDao {
 	@SuppressWarnings("finally")
 	public boolean deleteUser(String phone) {
 		boolean flag = false;
+		logger.info("[Delete- USER] - " + phone);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
@@ -155,6 +161,7 @@ public class UserDao {
 	@SuppressWarnings("finally")
 	public boolean rideRat(String phone,int rat) {
 		boolean flag = false;
+		logger.info("[Ride - Rat] - " + rat);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
@@ -188,6 +195,7 @@ public class UserDao {
 	@SuppressWarnings("finally")
 	public boolean reqRat(String phone,int rat) {
 		boolean flag = false;
+		logger.info("[REQ- Rating] - " + rat);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
