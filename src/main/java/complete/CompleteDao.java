@@ -6,15 +6,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import db.DbData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import user.UserDao;
 
 public class CompleteDao {
-
+	private static final Logger logger = LogManager.getLogger(CompleteDao.class);
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps = null;
-	
+
 	@SuppressWarnings("finally")
 	public ArrayList<String> viewCompleted(String creater,String requester) {
+		logger.info("[VIEW - COMPLETED] - " + creater + " " + requester);
 		ArrayList<String> list = new ArrayList<>();
 		try {
 			if(con == null) {
@@ -41,6 +45,7 @@ public class CompleteDao {
 	}
 	@SuppressWarnings("finally")
 	public boolean completeRide(String creater,String requester) {
+		logger.info("[COMPLETE - RIDE] - " + creater + " " + requester);
 		boolean flag=false;
 		try {
 			if(con == null) {
@@ -62,9 +67,10 @@ public class CompleteDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public boolean completeRideUpdate(String creater,String requester) {
+		logger.info("[COMPLETE - RIDE UPDATE] - " + creater + " " + requester);
 		boolean flag=false;
 		try {
 			if(con == null) {
@@ -87,9 +93,10 @@ public class CompleteDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public ArrayList<String> viewRideGiven(String creater) {
+		logger.info("[VIEW - RIDE GIVEN] - " + creater);
 		ArrayList<String> list = new ArrayList<>();
 		try {
 			if(con == null) {
@@ -110,9 +117,10 @@ public class CompleteDao {
 			return list;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public ArrayList<String> viewRideTaken(String requester) {
+		logger.info("[VIEW - RIDE TAKEN] - " + requester);
 		ArrayList<String> list = new ArrayList<>();
 		try {
 			if(con == null) {
