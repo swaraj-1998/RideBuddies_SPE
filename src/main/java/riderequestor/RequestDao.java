@@ -6,15 +6,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import db.DbData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import user.UserDao;
 
 public class RequestDao {
-
+	private static final Logger logger = LogManager.getLogger(RequestDao.class);
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps = null;
-	
+
 	@SuppressWarnings("finally")
 	public boolean addRequest(RequestDto dto) {
+		logger.info("[ADD- Request] - " + dto);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -25,7 +29,7 @@ public class RequestDao {
 			ps.setString(1, dto.getCreater());
 			ps.setString(2, dto.getRequester());
 			ps.setString(3, dto.getStatus());
-			
+
 			if(ps.executeUpdate()>0) {
 				flag=true;
 			}
@@ -37,9 +41,10 @@ public class RequestDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public boolean delRequest(RequestDto dto) {
+		logger.info("[Del- Request] - " + dto);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -50,7 +55,7 @@ public class RequestDao {
 			ps.setString(1, dto.getCreater());
 			ps.setString(2, dto.getRequester());
 			ps.setString(3, dto.getStatus());
-			
+
 			if(ps.executeUpdate()>0) {
 				flag=true;
 			}
@@ -62,9 +67,10 @@ public class RequestDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public boolean delAllRequest(String creater) {
+		logger.info("[Del - All Request] - " + creater);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -73,7 +79,7 @@ public class RequestDao {
 			String query = "delete from Request where creater = ?";
 			ps= con.prepareStatement(query);
 			ps.setString(1, creater);
-			
+
 			if(ps.executeUpdate()>0) {
 				flag=true;
 			}
@@ -85,9 +91,10 @@ public class RequestDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public String viewStatus(String creater,String requester) {
+		logger.info("[View Status] - " + creater);
 		String status = null;
 		try {
 			if(con == null) {
@@ -110,9 +117,10 @@ public class RequestDao {
 			return status;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public RequestDto viewMyRequest(String requester){
+		logger.info("[View My - Request] - " + requester);
 		RequestDto dto = null;
 		try {
 			if(con == null) {
@@ -137,9 +145,10 @@ public class RequestDao {
 			return dto;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public ArrayList<RequestDto> viewAllRequest(String creater){
+		logger.info("[View All - Request] - " + creater);
 		ArrayList<RequestDto> list = new ArrayList<>();
 		RequestDto dto;
 		try {
@@ -166,9 +175,10 @@ public class RequestDao {
 			return list;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public boolean acceptRequest(String creater,String requester) {
+		logger.info("[accept - Request] - " + requester);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -190,9 +200,10 @@ public class RequestDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public boolean declineRequest(String creater,String requester) {
+		logger.info("[Decline - Request] - " + requester);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -214,9 +225,10 @@ public class RequestDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public boolean delOtherRequest(String creater,String requester) {
+		logger.info("[del Other - Request] - " + requester);
 		boolean flag = false;
 		try {
 			if(con == null) {
@@ -238,9 +250,10 @@ public class RequestDao {
 			return flag;
 		}
 	}
-	
+
 	@SuppressWarnings("finally")
 	public RequestDto findAccReq(String creater) {
+		logger.info("[Find Accepted - Request] - " + creater);
 		RequestDto dto=null;
 		try {
 			if(con == null) {
@@ -266,5 +279,5 @@ public class RequestDao {
 			return dto;
 		}
 	}
-	
+
 }
