@@ -7,9 +7,12 @@ import java.util.ArrayList;
 
 import db.DbData;
 import riderequestor.RequestDto;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import user.UserDao;
 
 public class RideDao {
-
+	private static final Logger logger = LogManager.getLogger(RideDao.class);
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement ps = null;
@@ -17,6 +20,7 @@ public class RideDao {
 	@SuppressWarnings("finally")
 	public boolean createRide(RideDto dto) {
 		boolean flag=false;
+		logger.info("[CREATE - RIDE] - " + dto);
 		try {
 			if(con == null) {
 				con = DbData.getConnection();
@@ -51,6 +55,7 @@ public class RideDao {
 
 	@SuppressWarnings("finally")
 	public boolean deleteRide(String phone) {
+		logger.info("[DELETE - RIDE] - " + phone);
 		boolean flag=false;
 		try {
 			if(con == null) {
@@ -73,6 +78,7 @@ public class RideDao {
 
 	@SuppressWarnings("finally")
 	public ArrayList<RideDto> viewAllRide() {
+		logger.info("[ViewAll - RIDE] - " + "AllRide");
 		ArrayList<RideDto> list = new ArrayList<>();
 		RideDto dto = null;
 		try {
@@ -107,6 +113,7 @@ public class RideDao {
 
 	@SuppressWarnings("finally")
 	public RideDto viewRide(String phone) {
+		logger.info("[View - RIDE] - " + phone);
 		RideDto dto = null;
 		try {
 			if(con == null) {
@@ -140,6 +147,7 @@ public class RideDao {
 
 	@SuppressWarnings("finally")
 	public ArrayList<RideDto> searchRide(String origin,String dest){
+		logger.info("[Search - RIDE] - " + origin+" "+dest);
 		ArrayList<RideDto> list = new ArrayList<>();
 		RideDto dtoo = null;
 		try {
@@ -176,6 +184,7 @@ public class RideDao {
 
 	@SuppressWarnings("finally")
 	public ArrayList<RideDto> searchRideLatLng(double startLat,double startLng,double endLat,double endLng){
+		logger.info("[SEARCH - RIDE] - " + "BY LAT LON");
 		ArrayList<RideDto> list = new ArrayList<>();
 		RideDto dtoo = null;
 		try {
@@ -224,6 +233,6 @@ public class RideDao {
 		for(RideDto dto : list) {
 			System.out.println(dto.getPrice());
 		}
-		
+
 	}
 }
