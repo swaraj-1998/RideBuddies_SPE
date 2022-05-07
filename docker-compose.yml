@@ -1,7 +1,7 @@
 version: "3"
 services:
 
-  mysql:
+  mysqldb-container:
     image: mysql
     container_name: mysqldb-container
     volumes:
@@ -12,7 +12,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
 
-  maven-app:
+  RideBuddies-container:
     build: swaraj1998/ridebuddies
     image: swaraj1998/ridebuddies
     container_name: RideBuddies-container
