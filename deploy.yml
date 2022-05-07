@@ -19,5 +19,5 @@
         mode: 0644
     - name: Running Docker Compose File
       become: true
-      command:
+      shell:
         cmd: "docker-compose -f docker-compose.yml up -d"
