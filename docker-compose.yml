@@ -17,6 +17,8 @@ services:
     image: swaraj1998/ridebuddies
     container_name: RideBuddies-container
     tty: true
+    links:
+      - mysqldb-container
     depends_on:
       - mysqldb-container
 
