@@ -15,7 +15,7 @@
       copy:
         src: ./docker-compose.yml
         dest: ./
-    - name: asjda
+    - name: Pull Images
       command: docker-compose pull
 
     - name: Running Docker Compose File

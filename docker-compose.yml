@@ -13,10 +13,11 @@ services:
       - MYSQL_ROOT_PASSWORD=root
 
   RideBuddies-container:
-    build: swaraj1998/ridebuddies
     image: swaraj1998/ridebuddies
     container_name: RideBuddies-container
     tty: true
+    ports:
+      - "8082:8080"
     links:
       - mysqldb-container
     depends_on:
