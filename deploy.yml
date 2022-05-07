@@ -12,12 +12,10 @@
 #      shell: docker run -p 8082:8080 -d --name RideBuddies-container --link mysqldb-container swaraj1998/ridebuddies
 
     - name: Copy Docker Compose File
-      become: true
       copy:
         src: ./docker-compose.yml
         dest: ./
         mode: 0644
     - name: Running Docker Compose File
-      become: true
       shell:
         cmd: "docker-compose -f docker-compose.yml up -d"
