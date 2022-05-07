@@ -1,0 +1,26 @@
+version: "3"
+services:
+
+  mysql:
+    image: mysql
+    container_name: mysqldb-container
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    hostname: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  maven-app:
+    build: swaraj1998/ridebuddies
+    image: swaraj1998/ridebuddies
+    container_name: RideBuddies-container
+    tty: true
+    depends_on:
+      - mysqldb-container
+
+volumes:
+  mysql-data:
+    driver: local
