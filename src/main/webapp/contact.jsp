@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="style.css">
 
 	<script>
-		function lnctmapview() {
+		function mapview() {
 			var lnct = document.getElementById('lnctmap');
 			var sanjeet = document.getElementById('sanjeetmap');
 			var sumit = document.getElementById('sumitmap');
@@ -29,28 +29,6 @@
 			lnct.style.display = "block";
 			sanjeet.style.display = "none";
 			sumit.style.display = "none";
-		}
-		function sanjeetmapview() {
-			var lnct = document.getElementById('lnctmap');
-			var sanjeet = document.getElementById('sanjeetmap');
-			var sumit = document.getElementById('sumitmap');
-			lnct.style.display = "none";
-			sanjeet.style.display = "block";
-			sumit.style.display = "none";
-			document.getElementById('sumit').style.backgroundColor = "white";
-			document.getElementById('sanjeet').style.backgroundColor = "#eeeeee";
-			document.getElementById('lnct').style.backgroundColor = "white";
-		}
-		function sumitmapview() {
-			var lnct = document.getElementById('lnctmap');
-			var sanjeet = document.getElementById('sanjeetmap');
-			var sumit = document.getElementById('sumitmap');
-			lnct.style.display = "none";
-			sanjeet.style.display = "none";
-			sumit.style.display = "block";
-			document.getElementById('sumit').style.backgroundColor = "#eeeeee";
-			document.getElementById('sanjeet').style.backgroundColor = "white";
-			document.getElementById('lnct').style.backgroundColor = "white";
 		}
 	</script>
 </head>
@@ -169,7 +147,7 @@
 			<!-- Contact Info Area -->
 			<div class="col-12 col-md-4" id="lnct">
 				<div class="contact--info-area text-center wow fadeInUp"
-					 data-wow-delay="200ms" onclick="lnctmapview()"
+					 data-wow-delay="200ms" onclick="mapview()"
 					 style="cursor: pointer;">
 					<br/>
 					<h4>Swaraj Bhatnagar</h4>
