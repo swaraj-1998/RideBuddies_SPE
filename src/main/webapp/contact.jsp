@@ -33,7 +33,7 @@
 	</script>
 </head>
 
-<body onload="sanjeetmapview()">
+<body onload="mapview()">
 
 <!-- **** Header Area Start **** -->
 <jsp:include page="header.html"></jsp:include>
