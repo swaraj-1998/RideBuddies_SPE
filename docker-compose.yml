@@ -9,6 +9,8 @@ services:
     ports:
       - "3306:3306"
     hostname: mysql
+    networks:
+      - my_network
     environment:
       - MYSQL_ROOT_PASSWORD=root
 
@@ -18,10 +20,16 @@ services:
     tty: true
     ports:
       - "8082:8080"
-    links:
-      - mysqldb-container
+#    links:
+#      - mysqldb-container
+    networks:
+      - my_network
     depends_on:
       - mysqldb-container
 
 volumes:
   mysql-data:
+
+networks:
+  my_network:
+    driver: bridge
